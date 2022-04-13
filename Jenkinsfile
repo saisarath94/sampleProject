@@ -1,7 +1,19 @@
 pipeline {
     agent any
 
+    tools {nodejs 'node'}
+
     stages {
+        stage('cloning from git'){
+            steps {
+                git 'https://github.com/saisarath94/sampleProject.git'
+            }
+        }
+        stage('install dependencies'){
+            steps{
+               sh 'npm install' 
+            }
+        }
         stage('Build') {
             steps {
                 echo 'Build Application'
